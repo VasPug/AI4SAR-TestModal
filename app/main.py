@@ -10,11 +10,11 @@ app = FastAPI()
 
 
 class ValuesIn(BaseModel):
-    age: int
     groupSize: int
+    age: int
 
 class PredictionOut(BaseModel):
-    wander: bool
+    wander: str
 
 
 @app.get("/")
@@ -24,5 +24,7 @@ def home():
 
 @app.post("/predict", response_model=PredictionOut)
 def predict(payload: ValuesIn):
-    language = predict_pipeline(payload.age, payload.groupSize)
-    return {"Wander": language}
+    wandered = predict_pipeline(payload.groupSize, payload.age)
+    print("THIS IS WANDERED RESULT")
+    print(wandered)
+    return {"wander": wandered}

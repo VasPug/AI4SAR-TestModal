@@ -17,7 +17,9 @@ classes = [
 ]
 
 
-def predict_pipeline(age,groupSize):
-    pred = model.predict([age,groupSize])
+def predict_pipeline(groupSize,age):
+    pred = model.predict([[groupSize,age]])
+    print("THIS IS THE PREIDCITONNNNNNNNNNNNNNN")
     print(pred)
+    print(classes[pred[0]])
     return classes[pred[0]]
